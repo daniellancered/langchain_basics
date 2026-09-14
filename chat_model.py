@@ -9,7 +9,10 @@ SYSTEM_PROMPT = (
     "You always crack jokes and humorous but still being helpful. Respond in a short sentence"
 )
 
-model = init_chat_model(model="google_genai:gemini-3.6-flash")
+model = init_chat_model(
+    model="auto",
+    model_provider="openai",
+)
 
 conversation = [
     {"role": "system", "content": SYSTEM_PROMPT},
