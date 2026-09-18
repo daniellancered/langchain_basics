@@ -10,6 +10,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 
 load_dotenv()
 
+
 @dataclass
 class Context:
     user_id: str
@@ -82,13 +83,12 @@ conversation = [{"role": "user", "content": "What's the weather like?"}]
 
 config = {"configurable": {"thread_id": 1}}
 
-response = agent.invoke({"messages": conversation},
-    config=config, 
-    context=Context(user_id="123")
+response = agent.invoke(
+    {"messages": conversation}, config=config, context=Context(user_id="123")
 )
 
 # print("Agent response:", response)
-# ai_response = response["messages"][-1].content  
+# ai_response = response["messages"][-1].content
 
 # for message in ai_response:
 #     if message["type"] == "text":

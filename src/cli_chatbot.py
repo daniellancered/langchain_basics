@@ -22,7 +22,7 @@ conversation = [
 while True:
     user_input = input("You: ")
 
-    if user_input == 'quit':
+    if user_input == "quit":
         print("Assistant: Thank you! Goodbye!")
         break
 
