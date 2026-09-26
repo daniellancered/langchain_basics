@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 
 from langchain.chat_models import init_chat_model
-from langchain.messages import HumanMessage, AIMessage, SystemMessage, AIMessageChunk
 
 load_dotenv()
 
@@ -16,7 +15,7 @@ model = init_chat_model(
 )
 
 conversation = [
-    SystemMessage(SYSTEM_PROMPT),
+    ("system", SYSTEM_PROMPT),
 ]
 
 while True:
@@ -26,14 +25,13 @@ while True:
         print("Assistant: Thank you! Goodbye!")
         break
 
-    conversation.append(HumanMessage(user_input))
+    conversation.append(("human", user_input))
 
     ai_response = ""
     print("Assistant: ", end="", flush=True)
     for chunk in model.stream(conversation):
-        if isinstance(chunk, AIMessageChunk):
-            print(chunk.content, end="", flush=True)
-            ai_response += chunk.content
+        print(chunk.content, end="", flush=True)
+        ai_response += chunk.content
 
     print("")
-    conversation.append(AIMessage(ai_response))
+    conversation.append(("ai", ai_response))
