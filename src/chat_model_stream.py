@@ -20,5 +20,5 @@ conversation = [
     HumanMessage("What's the weather like in San Pedro Laguna?"),
 ]
 
-response = model.invoke(conversation)
-print(response.text)
+for chunk in model.stream(conversation):
+    print(chunk.text, end="", flush=True)
